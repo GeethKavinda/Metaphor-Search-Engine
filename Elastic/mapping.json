@@ -1,0 +1,129 @@
+{
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "my_analyzer": {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": ["stop_filter"]
+        },
+        "sinhala_analyzer_1": {
+          "type": "custom",
+          "tokenizer": "icu_tokenizer",
+          "filter": ["sinhala_synonym_filter","stop_filter", "sinhala_ngram_filter"]
+        },
+        "sinhala_analyzer_2": {
+          "type": "custom",
+          "tokenizer": "icu_tokenizer",
+          "filter": ["stop_filter", "sinhala_ngram_filter"]
+        }
+      },
+      "filter": {
+        "stop_filter": {
+          "type": "stop",
+          "stopwords": ["ගීත", "සිංදු", "ගී", "සින්දු", "ගත්කරු", "රචකයා", "ලියන්නා", "ලියන", "රචිත", "ලියපු", "ලියව්‌ව", "රචනා", "රචක", "ලියන්", "ලිවූ", "ගායකයා", "ගයනවා", "ගායනා", "ගායනා", "ගැයු", "ගයන", "කිව්", "කිවු", "සංගීත", "සංගීතවත්", "සංගීතය", "වර්ගය", "වර්‍ගයේ", "වර්ගයේම", "වර්ගයේ", "වැනි", "ඇතුලත්", "ඇතුලු", "විදියේ", "විදිහේ", "හොඳම", "ජනප්‍රිය", "ප්‍රචලිත", "ප්‍රසිද්ධම", "හොදම", "ජනප්‍රියම", "ලස්සනම"]
+        },
+        "sinhala_ngram_filter": {
+          "type": "edge_ngram",
+          "min_gram": "3",
+          "max_gram": "6",
+          "side": "front"
+        },
+        "sinhala_synonym_filter": {
+          "type": "synonym",
+          "synonyms_path": "synonym.txt"
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "Name": {
+        "type": "text",
+        "analyzer": "sinhala_analyzer_2",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
+              }
+          }
+      },
+      "Lyrics": {
+        "type": "text",
+        "analyzer": "sinhala_analyzer_1"
+      },
+      "Lyricist": {
+        "type": "text",
+        "analyzer": "sinhala_analyzer_2",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
+               }
+          }
+      },
+      "Singer": {
+        "type": "text",
+        "analyzer": "sinhala_analyzer_2",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
+           }
+          }
+      },
+      "Genre": {
+        "type": "text",
+        "analyzer": "sinhala_analyzer_1",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
+              }
+          }
+      },
+      "Music Composer": {
+        "type": "text",
+        "analyzer": "sinhala_analyzer_2",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
+          }
+        }
+      },
+      "Metaphor": {
+        "type": "text",
+        "analyzer": "sinhala_analyzer_1",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
+          }
+        }
+      }
+      ,
+      "Interpretation": {
+        "type": "text",
+        "analyzer": "sinhala_analyzer_1",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
+          }
+        }
+      },
+      "Source Domain": {
+        "type": "text",
+        "analyzer": "sinhala_analyzer_1",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
+          }
+        }
+      },
+      "Target Domain": {
+        "type": "text",
+        "analyzer": "sinhala_analyzer_1",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
+          }
+        }
+      }
+    }
+  }
+}
